@@ -1,264 +1,237 @@
-# 📦 Project Setup
+# Assignment 4 - Professional Calculator
 
----
+## Overview
 
-# 🧩 1. Install Homebrew (Mac Only)
+This project is a command-line calculator application written in Python.
 
-> Skip this step if you're on Windows.
+The calculator uses object-oriented programming concepts and supports addition, subtraction, multiplication, and division. It also includes a REPL interface, calculation history, help commands, input validation, and error handling.
 
-Homebrew is a package manager for macOS.  
-You’ll use it to easily install Git, Python, Docker, etc.
+## Features
 
-**Install Homebrew:**
+- Addition
+- Subtraction
+- Multiplication
+- Division
+- `help` command
+- `history` command
+- `exit` command
+- Input validation
+- Division-by-zero error handling
+- Calculation history
+- Calculation Factory design pattern
+- LBYL (Look Before You Leap)
+- EAFP (Easier to Ask Forgiveness than Permission)
+- Unit and parameterized testing with pytest
+- 100% test coverage
+- GitHub Actions for automated testing
 
-```bash
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+## Project Structure
+
+```text
+Assignment4/
+├── app/
+│   ├── calculation/
+│   │   └── __init__.py
+│   ├── calculator/
+│   │   └── __init__.py
+│   └── operation/
+│       └── __init__.py
+├── tests/
+│   ├── conftest.py
+│   ├── test_calculation.py
+│   ├── test_calculator.py
+│   └── test_operations.py
+├── .github/
+│   └── workflows/
+│       └── tests.yml
+├── .coveragerc
+├── .gitignore
+├── main.py
+├── pytest.ini
+├── requirements.txt
+└── README.md
 ```
 
-**Verify Homebrew:**
+## Setup
 
-```bash
-brew --version
-```
-
-If you see a version number, you're good to go.
-
----
-
-# 🧩 2. Install and Configure Git
-
-## Install Git
-
-- **MacOS (using Homebrew)**
-
-```bash
-brew install git
-```
-
-- **Windows**
-
-Download and install [Git for Windows](https://git-scm.com/download/win).  
-Accept the default options during installation.
-
-**Verify Git:**
-
-```bash
-git --version
-```
-
----
-
-## Configure Git Globals
-
-Set your name and email so Git tracks your commits properly:
-
-```bash
-git config --global user.name "Your Name"
-git config --global user.email "your_email@example.com"
-```
-
-Confirm the settings:
-
-```bash
-git config --list
-```
-
----
-
-## Generate SSH Keys and Connect to GitHub
-
-> Only do this once per machine.
-
-1. Generate a new SSH key:
-
-```bash
-ssh-keygen -t ed25519 -C "your_email@example.com"
-```
-
-(Press Enter at all prompts.)
-
-2. Start the SSH agent:
-
-```bash
-eval "$(ssh-agent -s)"
-```
-
-3. Add the SSH private key to the agent:
-
-```bash
-ssh-add ~/.ssh/id_ed25519
-```
-
-4. Copy your SSH public key:
-
-- **Mac/Linux:**
-
-```bash
-cat ~/.ssh/id_ed25519.pub | pbcopy
-```
-
-- **Windows (Git Bash):**
-
-```bash
-cat ~/.ssh/id_ed25519.pub | clip
-```
-
-5. Add the key to your GitHub account:
-   - Go to [GitHub SSH Settings](https://github.com/settings/keys)
-   - Click **New SSH Key**, paste the key, save.
-
-6. Test the connection:
-
-```bash
-ssh -T git@github.com
-```
-
-You should see a success message.
-
----
-
-# 🧩 3. Clone the Repository
-
-Now you can safely clone the course project:
-
-```bash
-git clone <repository-url>
-cd <repository-directory>
-```
-
----
-
-# 🛠️ 4. Install Python 3.10+
-
-## Install Python
-
-- **MacOS (Homebrew)**
-
-```bash
-brew install python
-```
-
-- **Windows**
-
-Download and install [Python for Windows](https://www.python.org/downloads/).  
-✅ Make sure you **check the box** `Add Python to PATH` during setup.
-
-**Verify Python:**
-
-```bash
-python3 --version
-```
-or
-```bash
-python --version
-```
-
----
-
-## Create and Activate a Virtual Environment
-
-(Optional but recommended)
+Create a virtual environment:
 
 ```bash
 python3 -m venv venv
-source venv/bin/activate   # Mac/Linux
-venv\Scripts\activate.bat  # Windows
 ```
 
-### Install Required Packages
+Activate the virtual environment:
+
+```bash
+source venv/bin/activate
+```
+
+Install the required packages:
 
 ```bash
 pip install -r requirements.txt
 ```
 
----
+## Run the Calculator
 
-# 🐳 5. (Optional) Docker Setup
-
-> Skip if Docker isn't used in this module.
-
-## Install Docker
-
-- [Install Docker Desktop for Mac](https://www.docker.com/products/docker-desktop/)
-- [Install Docker Desktop for Windows](https://www.docker.com/products/docker-desktop/)
-
-## Build Docker Image
-
-```bash
-docker build -t <image-name> .
-```
-
-## Run Docker Container
-
-```bash
-docker run -it --rm <image-name>
-```
-
----
-
-# 🚀 6. Running the Project
-
-- **Without Docker**:
+Run the calculator using:
 
 ```bash
 python main.py
 ```
 
-(or update this if the main script is different.)
+The calculator will start in the terminal and wait for user input.
 
-- **With Docker**:
+## Example Commands
 
-```bash
-docker run -it --rm <image-name>
+```text
+add 10 5
+subtract 15 3
+multiply 4 6
+divide 20 4
+history
+help
+exit
 ```
 
----
+Example:
 
-# 📝 7. Submission Instructions
-
-After finishing your work:
-
-```bash
-git add .
-git commit -m "Complete Module X"
-git push origin main
+```text
+>> add 10 5
+Result: AddCalculation: 10.0 Add 5.0 = 15.0
 ```
 
-Then submit the GitHub repository link as instructed.
+## Special Commands
 
----
+### help
 
-# 🔥 Useful Commands Cheat Sheet
+Displays instructions, supported operations, and example commands.
 
-| Action                         | Command                                          |
-| ------------------------------- | ------------------------------------------------ |
-| Install Homebrew (Mac)          | `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"` |
-| Install Git                     | `brew install git` or Git for Windows installer |
-| Configure Git Global Username  | `git config --global user.name "Your Name"`      |
-| Configure Git Global Email     | `git config --global user.email "you@example.com"` |
-| Clone Repository                | `git clone <repo-url>`                          |
-| Create Virtual Environment     | `python3 -m venv venv`                           |
-| Activate Virtual Environment   | `source venv/bin/activate` / `venv\Scripts\activate.bat` |
-| Install Python Packages        | `pip install -r requirements.txt`               |
-| Build Docker Image              | `docker build -t <image-name> .`                |
-| Run Docker Container            | `docker run -it --rm <image-name>`               |
-| Push Code to GitHub             | `git add . && git commit -m "message" && git push` |
+```text
+help
+```
 
----
+### history
 
-# 📋 Notes
+Displays calculations performed during the current session.
 
-- Install **Homebrew** first on Mac.
-- Install and configure **Git** and **SSH** before cloning.
-- Use **Python 3.10+** and **virtual environments** for Python projects.
-- **Docker** is optional depending on the project.
+```text
+history
+```
 
----
+### exit
 
-# 📎 Quick Links
+Exits the calculator.
 
-- [Homebrew](https://brew.sh/)
-- [Git Downloads](https://git-scm.com/downloads)
-- [Python Downloads](https://www.python.org/downloads/)
-- [Docker Desktop](https://www.docker.com/products/docker-desktop/)
-- [GitHub SSH Setup Guide](https://docs.github.com/en/authentication/connecting-to-github-with-ssh)
+```text
+exit
+```
+
+## Error Handling
+
+The calculator handles invalid input and unexpected situations without crashing the program.
+
+For example, division by zero:
+
+```text
+>> divide 10 0
+Cannot divide by zero.
+Please enter a non-zero divisor.
+```
+
+The project demonstrates two common Python error-handling approaches:
+
+- **LBYL (Look Before You Leap):** checks certain conditions before processing input.
+- **EAFP (Easier to Ask Forgiveness than Permission):** uses `try` and `except` blocks to attempt an operation and handle errors if they occur.
+
+## Object-Oriented Design
+
+The project uses object-oriented programming to organize the calculator into separate components.
+
+The `Operation` class contains the basic arithmetic methods:
+
+- Addition
+- Subtraction
+- Multiplication
+- Division
+
+The `Calculation` class is an abstract base class used by the following calculation classes:
+
+- `AddCalculation`
+- `SubtractCalculation`
+- `MultiplyCalculation`
+- `DivideCalculation`
+
+Each calculation class implements its own `execute()` method.
+
+The `CalculationFactory` is responsible for creating the correct calculation object based on the operation entered by the user.
+
+For example:
+
+```text
+add
+```
+
+is connected to:
+
+```text
+AddCalculation
+```
+
+through the `CalculationFactory`.
+
+## Testing
+
+The project uses `pytest` for unit and parameterized testing.
+
+Run the complete test suite with:
+
+```bash
+pytest
+```
+
+The tests cover:
+
+- Arithmetic operations
+- Calculation classes
+- Calculation Factory
+- Calculator REPL behavior
+- Special commands
+- Input validation
+- Error handling
+- Division by zero
+- Positive test cases
+- Negative test cases
+
+## Test Coverage
+
+The project is configured to maintain 100% test coverage.
+
+Running:
+
+```bash
+pytest
+```
+
+also generates the coverage report.
+
+The expected test result is:
+
+```text
+67 passed
+100% coverage
+```
+
+An HTML coverage report is also generated in the `htmlcov` directory.
+
+## GitHub Actions
+
+GitHub Actions is configured to automatically run the test suite when code is pushed to the repository.
+
+The workflow requires 100% test coverage.
+
+If test coverage drops below 100%, the GitHub Actions workflow will fail.
+
+## Author
+
+Xiao Du
