@@ -110,3 +110,4 @@ class DivideCalculation(Calculation):
             raise ZeroDivisionError("Cannot divide by zero.")
 
         return Operation.division(self.a, self.b)
+    
